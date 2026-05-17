@@ -1,0 +1,33 @@
+{
+  "hooks": {
+    "SessionStart":      [{"hooks": [{"type":"command","command":"python -m claude_beacon hook idle"}]}],
+    "UserPromptSubmit":  [{"hooks": [{"type":"command","command":"python -m claude_beacon hook working"}]}],
+    "Stop":              [{"hooks": [{"type":"command","command":"python -m claude_beacon hook idle"}]}],
+    "PreToolUse": [
+      {"matcher": "Bash",          "hooks":[{"type":"command","command":"python -m claude_beacon hook working"}]},
+      {"matcher": "Read",          "hooks":[{"type":"command","command":"python -m claude_beacon hook working"}]},
+      {"matcher": "Write",         "hooks":[{"type":"command","command":"python -m claude_beacon hook working"}]},
+      {"matcher": "Edit",          "hooks":[{"type":"command","command":"python -m claude_beacon hook working"}]},
+      {"matcher": "MultiEdit",     "hooks":[{"type":"command","command":"python -m claude_beacon hook working"}]},
+      {"matcher": "Glob",          "hooks":[{"type":"command","command":"python -m claude_beacon hook working"}]},
+      {"matcher": "Grep",          "hooks":[{"type":"command","command":"python -m claude_beacon hook working"}]},
+      {"matcher": "WebFetch",      "hooks":[{"type":"command","command":"python -m claude_beacon hook working"}]},
+      {"matcher": "WebSearch",     "hooks":[{"type":"command","command":"python -m claude_beacon hook working"}]},
+      {"matcher": "Task",          "hooks":[{"type":"command","command":"python -m claude_beacon hook working"}]},
+      {"matcher": "NotebookEdit",  "hooks":[{"type":"command","command":"python -m claude_beacon hook working"}]},
+      {"matcher": "Skill",         "hooks":[{"type":"command","command":"python -m claude_beacon hook working"}]},
+      {"matcher": "EnterPlanMode", "hooks":[{"type":"command","command":"python -m claude_beacon hook working"}]},
+      {"matcher": "AskUserQuestion","hooks":[{"type":"command","command":"python -m claude_beacon hook input"}]},
+      {"matcher": "ExitPlanMode",  "hooks":[{"type":"command","command":"python -m claude_beacon hook input"}]}
+    ],
+    "PostToolUse": [
+      {"matcher": "AskUserQuestion","hooks":[{"type":"command","command":"python -m claude_beacon hook input"}]}
+    ],
+    "PermissionRequest": [{"hooks": [{"type":"command","command":"python -m claude_beacon hook input"}]}],
+    "Notification": [
+      {"matcher": "permission_prompt|elicitation_dialog","hooks":[{"type":"command","command":"python -m claude_beacon hook input"}]},
+      {"matcher": "idle_prompt",                         "hooks":[{"type":"command","command":"python -m claude_beacon hook idle"}]}
+    ],
+    "SessionEnd":        [{"hooks": [{"type":"command","command":"python -m claude_beacon hook off"}]}]
+  }
+}
